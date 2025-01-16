@@ -16,7 +16,7 @@
 - Implement SignOut
 - Updated Profile
 - Bugfix: Signup use display name and profilepicture update
-- Bugfix: if the user is not login redirect /browse to login page and vice-versa
+- Bugfix: if the user is not login redirect "/browse" to login page and vice-versa
 - Unsubscribed to the onAuthChangeStateCShange callback
 - Added hard coded values to constant files
 - Register for TNDB API and create an app & get access token
