@@ -27,7 +27,8 @@
 - Fecth data for Trailer video
 - Update Store with Trailer video data
 - embedded youtube video and kade it autoplay and mute
-- Tailwing classes to make Main Container look awesome
+- Tailwind classes to make Main Container look awesome
+- Build Secondary Component
 
 # Features
 

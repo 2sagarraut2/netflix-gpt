@@ -16,6 +16,8 @@ export const API_OPTIONS = {
   },
 };
 
+export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w780/";
+
 export const PLAYICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
