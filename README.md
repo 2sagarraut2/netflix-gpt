@@ -34,6 +34,11 @@
 - TMDB image CDN URL
 - Made the Browse age amazing with Tailwind CSS
 - UsePopularMovies, useUpcomingMovies and useTopRatedMovies custom hooks
+- GPT Search Page
+- GPT Search Bar
+- (BONUS) Multi language feature in our app
+- Integrate GPT API
+- Get Open API Key
 
 # Features
 
