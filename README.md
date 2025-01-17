@@ -29,6 +29,11 @@
 - embedded youtube video and kade it autoplay and mute
 - Tailwind classes to make Main Container look awesome
 - Build Secondary Component
+- Build Movie List
+- Build Movie Card
+- TMDB image CDN URL
+- Made the Browse age amazing with Tailwind CSS
+- UsePopularMovies, useUpcomingMovies and useTopRatedMovies custom hooks
 
 # Features
 
