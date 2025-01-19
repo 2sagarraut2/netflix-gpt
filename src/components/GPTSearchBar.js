@@ -27,22 +27,22 @@ const GPTSearchBar = () => {
 
   const handleGptSearchClick = async () => {
     try {
-      const gptQuery =
-        "Act as a Movie recommendation system and suggest some movies for the query : " +
-        searchText.current.value +
-        " only give me names of 5 movies, comma separate like the example result give ahead: Example Result: Gadar, Sholay, Don, Golmal, Koo Mil Gaya";
+      // const gptQuery =
+      //   "Act as a Movie recommendation system and suggest some movies for the query : " +
+      //   searchText.current.value +
+      //   " only give me names of 5 movies, comma separate like the example result give ahead: Example Result: Gadar, Sholay, Don, Golmal, Koo Mil Gaya";
 
-      // call openai api nad get moview results
-      const gptResults = await openai.chat.completions.create({
-        messages: [{ role: "user", content: gptQuery }],
-        model: "gpt-3.5-turbo",
-      });
+      // // call openai api nad get moview results
+      // const gptResults = await openai.chat.completions.create({
+      //   messages: [{ role: "user", content: gptQuery }],
+      //   model: "gpt-3.5-turbo",
+      // });
 
-      if (!gptResults) {
-        // TODO: Write error handling
-        <Error />;
-      }
-      console.log(gptResults?.choices[0]?.message?.content);
+      // if (!gptResults) {
+      //   // TODO: Write error handling
+      //   <Error />;
+      // }
+      // console.log(gptResults?.choices[0]?.message?.content);
 
       // TODO: need to update value coming from gptResults
 
@@ -73,10 +73,10 @@ const GPTSearchBar = () => {
   };
 
   return (
-    <div className="pt-[6%] flex justify-center">
+    <div className="pt-[40%] md:pt-[6%] flex justify-center">
       <form
         onSubmit={(e) => e.preventDefault()}
-        className="w-1/2 bg-black grid grid-cols-12"
+        className="w-full md:w-1/2 bg-black grid grid-cols-12"
       >
         <input
           className="p-4 m-4 rounded-md col-span-9"

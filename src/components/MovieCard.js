@@ -3,7 +3,7 @@ import { IMAGE_CDN_URL } from "../utils/constants";
 
 const MovieCard = ({ posterPath, title }) => {
   return (
-    <div className="w-48 cursor-pointer">
+    <div className="w-36 md:w-48 cursor-pointer">
       {posterPath ? (
         <img
           src={IMAGE_CDN_URL + posterPath}

@@ -8,7 +8,11 @@ import { LOGO, SUPPORTED_LANGUAGES } from "../utils/constants";
 import { onAuthStateChanged } from "firebase/auth";
 import { useDispatch } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import { toggleGptSearchView, addGPTMovieResults } from "../utils/gptSlice";
+import {
+  toggleGptSearchView,
+  addGPTMovieResults,
+  clearGptSearchView,
+} from "../utils/gptSlice";
 import { changeLanguage } from "../utils/configSlice";
 
 const Header = () => {
@@ -30,6 +34,7 @@ const Header = () => {
           })
         );
         navigate("/browse");
+        dispatch(clearGptSearchView());
       } else {
         dispatch(removeUser());
         navigate("/");
@@ -64,8 +69,8 @@ const Header = () => {
   };
 
   return (
-    <div className="absolute w-screen px-8 py-2 bg-gradient-to-b from-black z-10 flex justify-between">
-      <img className="w-44" src={LOGO} alt="logo" />
+    <div className="absolute w-screen md:px-8 px-2 py-2 bg-gradient-to-b from-black z-10 flex md:flex-row justify-between">
+      <img className="md:w-44 w-20 md:mx-0" src={LOGO} alt="logo" />
       {user && (
         <div className="p-4 flex gap-2">
           {showGptSearch && (
@@ -88,11 +93,11 @@ const Header = () => {
               {showGptSearch ? "Home" : "GPT Search"}
             </button>
           </span>
-          <span className="flex gap-2 ">
+          <span className="flex md:gap-2 flex-col items-center md:flex-row">
             <img
               alt="user-avatar"
               src={user.photoURL}
-              className="w-10 rounded-sm"
+              className="md:w-10 md:h-10 w-5 h-5 rounded-md hidden md:block"
             />
             <button className="font-bold text-white" onClick={handleSignOut}>
               (Sign Out)

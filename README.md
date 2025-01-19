@@ -39,6 +39,12 @@
 - (BONUS) Multi-language feature in our app
 - Integrate GPT API
 - Get Open API Key
+- fetched GPT Movie suggestions from TMDB
+- gptSlice, added data
+- Reused Movie List component to show movie suggestion
+- Memoization
+- adding .env file
+- Reponsiveness code added
 
 # Features
 
