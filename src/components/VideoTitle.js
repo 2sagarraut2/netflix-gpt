@@ -3,7 +3,7 @@ import { INFOICON, PLAYICON } from "../utils/constants";
 
 const VideoTitle = ({ title, overview }) => {
   return (
-    <div className="w-screen aspect-video pt-[20%] px-24 absolute text-white bg-gradient-to-r from-[#222222]">
+    <div className="w-screen aspect-video pt-[20%] px-16 absolute text-white bg-gradient-to-r from-[#222222]">
       <h1 className="text-4xl font-bold">{title}</h1>
       <p className="py-6 text-lg w-1/2">{overview}</p>
       <div className="flex gap-2">

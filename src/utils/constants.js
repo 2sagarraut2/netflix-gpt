@@ -11,12 +11,11 @@ export const API_OPTIONS = {
   method: "GET",
   headers: {
     accept: "application/json",
-    Authorization:
-      "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiZjg2NDY1YTFkNjgyNzEzMTQ1N2I2MTg2ZGJhZmQzNCIsIm5iZiI6MTczNzAwNjY3My4zNjcsInN1YiI6IjY3ODg5ZTUxYTY0ZmViMTZjOTFkMzk0NCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0qsCO7MMxZUYdCdWBIl8ikQTV6NUzfGjFYHLyE2J9Qk",
+    Authorization: "Bearer " + process.env.REACT_APP_TMDB_API_KEY,
   },
 };
 
-export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w780/";
+export const IMAGE_CDN_URL = "https://image.tmdb.org/t/p/w500/";
 
 export const PLAYICON = (
   <svg
@@ -71,3 +70,5 @@ export const SUPPORTED_LANGUAGES = [
     name: "Spanish",
   },
 ];
+
+export const OPENAIKEY = process.env.REACT_APP_O_API_KEY;
