@@ -37,9 +37,8 @@ const GPTSearchBar = () => {
       const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
       const result = await model.generateContent(gptQuery);
-      console.log("API response", result.response.text());
 
-      // TODO: need to update value coming from gptResults
+      // TODO: need to update value coming from GEMINI
 
       const gptMovieList = result.response.text().split(",");
 
@@ -60,18 +59,60 @@ const GPTSearchBar = () => {
     }
   };
 
+  // clear search box and results
+  const handleClear = () => {
+    if (searchText.current) {
+      searchText.current.value = ""; // Clear the actual input
+
+      dispatch(
+        addGPTMovieResults({
+          movieNames: null,
+          movieResults: null,
+        })
+      );
+    }
+  };
+
+  const toggleIconVisibility = () => {
+    const clearIcon = searchText.current?.nextElementSibling;
+    if (clearIcon) {
+      clearIcon.classList.toggle("hidden", !searchText.current.value);
+    }
+  };
+
   return (
     <div className="pt-[40%] md:pt-[6%] flex justify-center">
       <form
         onSubmit={(e) => e.preventDefault()}
         className="w-full md:w-1/2 bg-black grid grid-cols-12"
       >
-        <input
-          className="p-4 m-4 rounded-md col-span-9"
-          type="text"
-          placeholder={lang[selectedLanguageKey].gptSearchPlaceholder}
-          ref={searchText}
-        />
+        <div className="relative col-span-9 m-4">
+          <input
+            className="p-4 w-full rounded-md pr-10"
+            type="text"
+            placeholder={lang[selectedLanguageKey].gptSearchPlaceholder}
+            ref={searchText}
+            onInput={toggleIconVisibility}
+          />
+
+          {/* Clear Icon */}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth="1.5"
+            stroke="currentColor"
+            className="size-6 absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600 cursor-pointer hidden"
+            onClick={handleClear}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </div>
+
         <button
           className="py-2 px-4 m-4 rounded-md bg-red-700 text-white col-span-3"
           onClick={handleGptSearchClick}
