@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addUpcomingMovies } from "../utils/moviesSlice";
@@ -6,9 +6,9 @@ import { addUpcomingMovies } from "../utils/moviesSlice";
 const useUpcomingMovies = () => {
   // fetch data from TMDB data API and update store
   const dispatch = useDispatch();
-  const upcomingMovies = useSelector((store) => store.movies.upcomingMovies);
-
-  const [pageUpcoming, setPageUpcoming] = useState(1); // Manage page state
+  const { upcomingMovies, upcomingPagination } = useSelector(
+    (store) => store.movies
+  );
 
   const getUpcomingMovies = async (pageNumber) => {
     const data = await fetch(
@@ -22,11 +22,11 @@ const useUpcomingMovies = () => {
   };
 
   useEffect(() => {
-    getUpcomingMovies(pageUpcoming);
+    getUpcomingMovies(upcomingPagination);
     // eslint-disable-next-line
-  }, [pageUpcoming]);
+  }, [upcomingPagination]);
 
-  return { upcomingMovies, pageUpcoming, setPageUpcoming };
+  return { upcomingMovies };
 };
 
 export default useUpcomingMovies;

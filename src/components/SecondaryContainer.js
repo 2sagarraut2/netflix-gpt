@@ -1,39 +1,76 @@
 import React from "react";
 import MovieList from "./MovieList";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import useNowPlayingMovies from "../hooks/useNowPlayingMovies";
 import usePopularMovies from "../hooks/usePopularMovies";
 import useTopRatedMovies from "../hooks/useTopRatedMovies";
 import useUpcomingMovies from "../hooks/useUpcomingMovies";
+import {
+  nextPageNowPlaying,
+  nextPagePopular,
+  nextPageTopRated,
+  nextPageUpcoming,
+  prevPageNowPlaying,
+  prevPagePopular,
+  prevPageTopRated,
+  prevPageUpcoming,
+} from "../utils/moviesSlice";
 
 const SecondaryContainer = () => {
+  const dispatch = useDispatch();
   const movies = useSelector((store) => store.movies);
-  const { nowPlayingMovies, pageNowPlaying, setPageNowPlaying } =
-    useNowPlayingMovies();
-  const { popularMovies, pagePopularMovies, setPagePopularMovies } =
-    usePopularMovies();
-  const { topRatedMovies, pageTopRated, setPageTopRated } = useTopRatedMovies();
-  const { upcomingMovies, pageUpcoming, setPageUpcoming } = useUpcomingMovies();
+
+  const { nowPlayingPagination } = useSelector((store) => store.movies);
+  const { nowPlayingMovies } = useNowPlayingMovies();
+
+  const { popularPagination } = useSelector((store) => store.movies);
+  const { popularMovies } = usePopularMovies();
+
+  const { topRatedPagination } = useSelector((store) => store.movies);
+  const { topRatedMovies } = useTopRatedMovies();
+
+  const { upcomingPagination } = useSelector((store) => store.movies);
+  const { upcomingMovies } = useUpcomingMovies();
 
   // Now playing pagination
-  const handleNextPageNowPlaying = () => setPageNowPlaying((prev) => prev + 1);
-  const handlePrevPageNowPlaying = () =>
-    setPageNowPlaying((prev) => Math.max(prev - 1, 1));
+  const handleNextPageNowPlaying = () => {
+    dispatch(nextPageNowPlaying());
+  };
+  const handlePrevPageNowPlaying = () => {
+    dispatch(prevPageNowPlaying());
+  };
 
   // Popular movies pagination
-  const handleNextPagePopular = () => setPagePopularMovies((prev) => prev + 1);
-  const handlePrevPagePopular = () =>
-    setPagePopularMovies((prev) => Math.max(prev - 1, 1));
+  const handleNextPagePopular = () => {
+    // setPagePopularMovies((prev) => prev + 1);
+    dispatch(nextPagePopular());
+  };
+  const handlePrevPagePopular = () => {
+    // setPagePopularMovies((prev) => Math.max(prev - 1, 1));
+    dispatch(prevPagePopular());
+  };
 
   // Top rated movies pagination
-  const handleNextPageTopRated = () => setPageTopRated((prev) => prev + 1);
-  const handlePrevPageTopRated = () =>
-    setPageTopRated((prev) => Math.max(prev - 1, 1));
+  const handleNextPageTopRated = () => {
+    // setPageTopRated((prev) => prev + 1);
+    dispatch(nextPageTopRated());
+  };
 
-  // Top rated movies pagination
-  const handleNextPageUpcoming = () => setPageUpcoming((prev) => prev + 1);
-  const handlePrevPageUpcoming = () =>
-    setPageUpcoming((prev) => Math.max(prev - 1, 1));
+  const handlePrevPageTopRated = () => {
+    // setPageTopRated((prev) => Math.max(prev - 1, 1));
+    dispatch(prevPageTopRated());
+  };
+
+  // Upcming movies pagination
+  const handleNextPageUpcoming = () => {
+    // setPageUpcoming((prev) => prev + 1);
+    dispatch(nextPageUpcoming());
+  };
+
+  const handlePrevPageUpcoming = () => {
+    // setPageUpcoming((prev) => Math.max(prev - 1, 1));
+    dispatch(prevPageUpcoming());
+  };
 
   return (
     movies && (
@@ -44,7 +81,7 @@ const SecondaryContainer = () => {
             <button
               className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
               onClick={handlePrevPageNowPlaying}
-              disabled={pageNowPlaying === 1}
+              disabled={nowPlayingPagination === 1}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -94,7 +131,7 @@ const SecondaryContainer = () => {
             <button
               className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
               onClick={handlePrevPagePopular}
-              disabled={pagePopularMovies === 1}
+              disabled={popularPagination === 1}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -140,7 +177,7 @@ const SecondaryContainer = () => {
             <button
               className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
               onClick={handlePrevPageTopRated}
-              disabled={pageTopRated === 1}
+              disabled={topRatedPagination === 1}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -186,7 +223,7 @@ const SecondaryContainer = () => {
             <button
               className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
               onClick={handlePrevPageUpcoming}
-              disabled={pageUpcoming === 1}
+              disabled={upcomingPagination === 1}
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"

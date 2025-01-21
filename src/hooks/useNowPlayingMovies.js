@@ -1,15 +1,13 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 
 const useNowPlayingMovies = () => {
   const dispatch = useDispatch();
-  const nowPlayingMovies = useSelector(
-    (store) => store.movies.nowPlayingMovies
+  const { nowPlayingPagination, nowPlayingMovies } = useSelector(
+    (store) => store.movies
   );
-
-  const [pageNowPlaying, setPageNowPlaying] = useState(1); // Manage page state
 
   const getNowPlayingMovies = async (pageNumber) => {
     const data = await fetch(
@@ -23,11 +21,11 @@ const useNowPlayingMovies = () => {
   };
 
   useEffect(() => {
-    getNowPlayingMovies(pageNowPlaying);
+    getNowPlayingMovies(nowPlayingPagination);
     // eslint-disable-next-line
-  }, [pageNowPlaying]);
+  }, [nowPlayingPagination]);
 
-  return { nowPlayingMovies, pageNowPlaying, setPageNowPlaying }; // Return page and setter
+  return { nowPlayingMovies }; // Return page and setter
 };
 
 export default useNowPlayingMovies;

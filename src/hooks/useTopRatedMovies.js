@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addTopRatedMovies } from "../utils/moviesSlice";
@@ -6,9 +6,9 @@ import { addTopRatedMovies } from "../utils/moviesSlice";
 const useTopRatedMovies = () => {
   // fetch data from TMDB data API and update store
   const dispatch = useDispatch();
-  const topRatedMovies = useSelector((store) => store.movies.topRatedMovies);
-
-  const [pageTopRated, setPageTopRated] = useState(1); // Manage page state
+  const { topRatedMovies, topRatedPagination } = useSelector(
+    (store) => store.movies
+  );
 
   const getTopRatedMovies = async (pageNumber) => {
     const data = await fetch(
@@ -22,11 +22,11 @@ const useTopRatedMovies = () => {
   };
 
   useEffect(() => {
-    getTopRatedMovies(pageTopRated);
+    getTopRatedMovies(topRatedPagination);
     // eslint-disable-next-line
-  }, [pageTopRated]);
+  }, [topRatedPagination]);
 
-  return { topRatedMovies, pageTopRated, setPageTopRated };
+  return { topRatedMovies };
 };
 
 export default useTopRatedMovies;

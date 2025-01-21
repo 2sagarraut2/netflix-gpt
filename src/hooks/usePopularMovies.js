@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addPopularMovies } from "../utils/moviesSlice";
@@ -6,9 +6,9 @@ import { addPopularMovies } from "../utils/moviesSlice";
 const usePopularMovies = () => {
   // fetch data from TMDB data API and update store
   const dispatch = useDispatch();
-  const popularMovies = useSelector((store) => store.movies.popularMovies);
-
-  const [pagePopularMovies, setPagePopularMovies] = useState(1); // Manage page state
+  const { popularMovies, popularPagination } = useSelector(
+    (store) => store.movies
+  );
 
   const getPopularMovies = async (pageNumber) => {
     const data = await fetch(
@@ -22,11 +22,11 @@ const usePopularMovies = () => {
   };
 
   useEffect(() => {
-    getPopularMovies(pagePopularMovies);
+    getPopularMovies(popularPagination);
     // eslint-disable-next-line
-  }, [pagePopularMovies]);
+  }, [popularPagination]);
 
-  return { popularMovies, pagePopularMovies, setPagePopularMovies }; // Return page and setter
+  return { popularMovies }; // Return page and setter
 };
 
 export default usePopularMovies;
