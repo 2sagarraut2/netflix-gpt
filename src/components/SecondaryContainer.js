@@ -38,70 +38,194 @@ const SecondaryContainer = () => {
   return (
     movies && (
       <div className="bg-black ">
-        <div className="px-2 mt-0 md:px-16 md:-mt-[15%] lg:-mt[20%] relative z-20">
+        <div className="md:px-4 mt-0 md:-mt-[15%] lg:-mt[20%] relative z-20">
           {/* Now Palying */}
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handlePrevPageNowPlaying}
-            disabled={pageNowPlaying === 1}
-          >
-            Previous
-          </button>
-          <MovieList title={"Now Playing"} movies={nowPlayingMovies} />
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handleNextPageNowPlaying}
-          >
-            Next
-          </button>
+          <div className="flex flex-wrap overflow-hidden">
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handlePrevPageNowPlaying}
+              disabled={pageNowPlaying === 1}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <div className="flex-1 overflow-hidden">
+              <MovieList
+                title={"Now Playing"}
+                movies={nowPlayingMovies}
+                className=""
+              />
+            </div>
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handleNextPageNowPlaying}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+          </div>
 
           {/* Popular Movies */}
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handlePrevPagePopular}
-            disabled={pagePopularMovies === 1}
-          >
-            Previous
-          </button>
-          <MovieList title={"Popular"} movies={popularMovies} />
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handleNextPagePopular}
-          >
-            Next
-          </button>
+          <div className="flex flex-wrap overflow-hidden">
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handlePrevPagePopular}
+              disabled={pagePopularMovies === 1}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <div className="flex-1 overflow-hidden">
+              <MovieList title={"Popular"} movies={popularMovies} />
+            </div>
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handleNextPagePopular}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+          </div>
 
           {/* Top rated movies */}
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handlePrevPageTopRated}
-            disabled={pageTopRated === 1}
-          >
-            Previous
-          </button>
-          <MovieList title={"Top Rated"} movies={topRatedMovies} />
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handleNextPageTopRated}
-          >
-            Next
-          </button>
+          <div className="flex flex-wrap overflow-hidden">
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handlePrevPageTopRated}
+              disabled={pageTopRated === 1}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <div className="flex-1 overflow-hidden">
+              <MovieList title={"Top Rated"} movies={topRatedMovies} />
+            </div>
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handleNextPageTopRated}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+          </div>
 
           {/* Upcoming movies */}
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handlePrevPageUpcoming}
-            disabled={pageUpcoming === 1}
-          >
-            Previous
-          </button>
-          <MovieList title={"Upcoming"} movies={upcomingMovies} />
-          <button
-            className="px-4 py-2 bg-blue-500 text-white rounded-lg"
-            onClick={handleNextPageUpcoming}
-          >
-            Next
-          </button>
+          <div className="flex flex-wrap overflow-hidden">
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handlePrevPageUpcoming}
+              disabled={pageUpcoming === 1}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M15.75 19.5 8.25 12l7.5-7.5"
+                />
+              </svg>
+            </button>
+            <div className="flex-1 overflow-hidden">
+              <MovieList title={"Upcoming"} movies={upcomingMovies} />
+            </div>
+            <button
+              className="px-2 md:px-2 text-white rounded-lg cursor-pointer hover:opacity-50"
+              onClick={handleNextPageUpcoming}
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                strokeWidth="1.5"
+                stroke="currentColor"
+                className="size-8"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="m8.25 4.5 7.5 7.5-7.5 7.5"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
       </div>
     )
