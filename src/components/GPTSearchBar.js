@@ -5,7 +5,7 @@ import { API_OPTIONS, GEMINI_API_KEY } from "../utils/constants";
 import { addGPTMovieResults } from "../utils/gptSlice";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const GPTSearchBar = () => {
+const GPTSearchBar = ({ loading, setLoading }) => {
   const dispatch = useDispatch();
 
   const selectedLanguageKey = useSelector((store) => store.config.lang);
@@ -25,6 +25,7 @@ const GPTSearchBar = () => {
   };
 
   const handleGptSearchClick = async () => {
+    setLoading(true);
     try {
       const gptQuery =
         "Act as a Movie recommendation system and suggest some movies for the query : " +
@@ -47,6 +48,7 @@ const GPTSearchBar = () => {
       // [Promise, Promise, Promise, Promise, Promise]
 
       const tmdbResults = await Promise.all(promiseArray);
+      setLoading(false);
 
       dispatch(
         addGPTMovieResults({
@@ -56,6 +58,7 @@ const GPTSearchBar = () => {
       );
     } catch (error) {
       console.log(error);
+      setLoading(false);
     }
   };
 

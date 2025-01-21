@@ -46,6 +46,9 @@
 - adding .env file
 - Reponsiveness code added
 - Clear search results functionality added
+- useMovieVideos custome hook added
+- Movie Info component added
+- Pagination added
 
 # Features
 

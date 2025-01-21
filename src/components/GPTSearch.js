@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import GPTSearchBar from "./GPTSearchBar";
 import GPTMovieSuggestions from "./GPTMovieSuggestions";
 import { BACKGROUNDIMAGE } from "../utils/constants";
+import Loader from "./Loader";
 
 const GPTSearch = () => {
+  const [loading, setLoading] = useState(false);
+
   return (
     <div>
       <div className="fixed -z-10 ">
@@ -14,7 +17,8 @@ const GPTSearch = () => {
         />
       </div>
       <div className="">
-        <GPTSearchBar />
+        <GPTSearchBar loading={loading} setLoading={setLoading} />
+        {loading && <Loader />}
         <GPTMovieSuggestions />
       </div>
     </div>

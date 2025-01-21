@@ -1,19 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { API_OPTIONS } from "../utils/constants";
 import { addNowPlayingMovies } from "../utils/moviesSlice";
 
 const useNowPlayingMovies = () => {
-  // fetch data from TMDB data API and update store
   const dispatch = useDispatch();
-
   const nowPlayingMovies = useSelector(
     (store) => store.movies.nowPlayingMovies
   );
 
-  const getNowPlayingMovies = async () => {
+  const [pageNowPlaying, setPageNowPlaying] = useState(1); // Manage page state
+
+  const getNowPlayingMovies = async (pageNumber) => {
     const data = await fetch(
-      "https://api.themoviedb.org/3/movie/now_playing?page=1",
+      `https://api.themoviedb.org/3/movie/now_playing?page=${pageNumber}`,
       API_OPTIONS
     );
 
@@ -23,10 +23,11 @@ const useNowPlayingMovies = () => {
   };
 
   useEffect(() => {
-    !nowPlayingMovies && getNowPlayingMovies();
-
+    getNowPlayingMovies(pageNowPlaying);
     // eslint-disable-next-line
-  }, []);
+  }, [pageNowPlaying]);
+
+  return { nowPlayingMovies, pageNowPlaying, setPageNowPlaying }; // Return page and setter
 };
 
 export default useNowPlayingMovies;
