@@ -1,7 +1,14 @@
 import React from "react";
 import { INFOICON, PLAYICON } from "../utils/constants";
+import { useNavigate } from "react-router-dom";
 
-const VideoTitle = ({ title, overview }) => {
+const VideoTitle = ({ title, overview, id }) => {
+  const navigate = useNavigate();
+
+  const handleInfoButtonClicked = (id) => {
+    navigate("/info/" + id);
+  };
+
   return (
     <div className="w-screen aspect-video pt-[20%] px-6 md:px-16 absolute text-white bg-gradient-to-r from-[#222222]">
       <h1 className="md:text-4xl text-2xl font-bold">{title}</h1>
@@ -11,7 +18,10 @@ const VideoTitle = ({ title, overview }) => {
           {PLAYICON}
           <span>Play</span>
         </button>
-        <button className="hidden md:flex py-3 px-8 rounded-md bg-slate-600 text-white bg-opacity-70 justify-center items-center gap-2 font-bold hover:opacity-80">
+        <button
+          className="hidden md:flex py-3 px-8 rounded-md bg-slate-600 text-white bg-opacity-70 justify-center items-center gap-2 font-bold hover:opacity-80"
+          onClick={() => handleInfoButtonClicked(id)}
+        >
           {INFOICON}
           <span>More Info</span>
         </button>
